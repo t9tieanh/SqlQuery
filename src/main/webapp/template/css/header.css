@@ -1,0 +1,40 @@
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+
+.dropdown-icon {
+    font-size: 22px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+/* .navbar-brand {
+    background-color: #dcdde1;
+} */
+
+.navbar-brand div{
+    margin-left: 10px;
+    line-height: 1.2;
+}
+
+.navbar-brand .name {
+    font-weight: bold;
+}
+
+.navbar-brand .subtitle {
+    font-size: 0.8em;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Đảm bảo header nằm trên các phần tử khác */
+}

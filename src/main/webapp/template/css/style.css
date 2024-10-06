@@ -1,0 +1,101 @@
+.container-survey {
+
+    font-family: Arial, sans-serif;
+    /*background-color: #f4f4f4;*/
+    background-image: url("../media/multi-layers-blue-color-texture-3d-papercut-layers-in-gradient-banner-abstract-paper-cut-art-background-design-for-website-template-topography-map-concept-or-.jpg");
+    background-size: 100% 100%;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    height: 1200px;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;    /* Căn giữa theo chiều dọc */
+}
+.survey-container {
+    margin-top : 30px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+}
+.survey-container img {
+    display: block;
+    margin: 0 auto 20px;
+}
+.survey-container h1 {
+    /* text-align: cent; */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.survey-container h2 {
+    /* text-align: cent; */
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.survey-container label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+.survey-container input[type="text"],
+.survey-container input[type="email"],
+.survey-container input[type="date"] {
+    width: calc(100% - 10px);
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* color: #6A9C89; Dark Blue */
+}
+
+.survey-container h1 ,h2 {
+    color: teal;
+}
+
+.survey-container .radio-group {
+    margin-bottom: 15px;
+}
+.survey-container .radio-group label {
+    font-weight: normal;
+    display: inline-block;
+    margin-right: 10px;
+}
+.survey-container input[type="radio"] {
+    margin-right: 5px;
+}
+.survey-container input[type="checkbox"] {
+    margin-right: 5px;
+}
+.survey-container .dropdown {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.survey-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.survey-container button:hover {
+    background-color: #2980b9;
+}
+
+.checkbox-group .checkbox-item {
+    display: inline-flex; /* Hiển thị thẻ input và label theo hàng ngang */
+    align-items: center; /* Căn chỉnh dọc giữa input và label */
+    margin-bottom: 10px; /* Khoảng cách giữa các mục checkbox */
+}
+
+.checkbox-group label {
+    font-size: 14px; /* Kích thước chữ của label nhỏ hơn */
+    font-weight: normal; /* Bỏ in đậm */
+    margin-left: 5px; /* Khoảng cách giữa checkbox và label */
+}
