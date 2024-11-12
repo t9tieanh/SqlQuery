@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/home")
@@ -27,45 +28,39 @@ public class HomeController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String command = request.getParameter("command");
-        String userId = request.getParameter("userId");
-        String email = request.getParameter("email");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
         String resultMessage = "";
 
         try {
-            if("insert".equalsIgnoreCase(command)) {
-                System.out.println("hello");
-                String sql = "INSERT INTO User(Email, FirstName, LastName) VALUES (?, ?, ?)";
-                int index = abstractDAO.insert(sql, email, firstName, lastName);
-                resultMessage = "Insert successfull!";
-            }
-            else if("update".equalsIgnoreCase(command)) {
-                if (userId != null && !userId.isEmpty()) {
-                    // Truy vấn bản ghi hiện tại từ database
-                    UserModel existingUser = userDAO.findById(Integer.parseInt(userId));
+            String command = request.getParameter("command");
 
-                    if (email == null || email.isEmpty()) {
-                        email = existingUser.getEmail();
-                    }
-                    if (firstName == null || firstName.isEmpty()) {
-                        firstName = existingUser.getFirstName();
-                    }
-                    if (lastName == null || lastName.isEmpty()) {
-                        lastName = existingUser.getLastName();
-                    }
-                    String sql = "UPDATE User SET Email = ?, FirstName = ?, LastName = ? WHERE UserId = ?";
-                    abstractDAO.update(sql, email, firstName, lastName, userId);
-                    resultMessage = "Update successful!";
-                }
-            }
-            else if ("select".equalsIgnoreCase(command)) {
+            if ("select".equalsIgnoreCase(command)) {
                 List<UserModel> users = userDAO.findAll();
                 request.setAttribute("users", users);
                 resultMessage = "Query successful!";
-            }
 
+            } else {
+                String email = request.getParameter("email");
+                String firstName = request.getParameter("firstName");
+                String lastName = request.getParameter("lastName");
+                UserModel user = new UserModel(email,firstName,lastName);
+
+                if ("insert".equalsIgnoreCase(command)) {
+                    if (userDAO.findByEmail(user.getEmail()) == null) {
+                        int id = userDAO.insert(user);
+                        resultMessage = MessageFormat.format("Insert {0} successfull!",id);
+                    } else resultMessage = "user already exists !";
+                }
+                else if("update".equalsIgnoreCase(command)) {
+                    int userId = Integer.valueOf(request.getParameter("userId"));
+                    user.setId(userId);
+
+                    UserModel existingUser = userDAO.findById(userId);
+                    if (existingUser != null) {
+                        userDAO.update(user);
+                        resultMessage = "Update successful!";
+                    } else resultMessage = "user does not exist yet!";
+                }
+            }
         }
         catch (Exception e) {
             resultMessage = "Error executing SQL: " + e.getMessage();

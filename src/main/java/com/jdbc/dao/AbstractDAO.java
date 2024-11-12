@@ -21,6 +21,7 @@ public class AbstractDAO<T> implements GenericDAO<T>{
             return null;
         }
     }
+
     @Override
     public <T1> List<T1> query(String sql, RowMapper<T1> rowMapper, Object... parameters) {
         List<T1> results = new ArrayList<>();
@@ -100,6 +101,7 @@ public class AbstractDAO<T> implements GenericDAO<T>{
         try {
             int id = 0;
             connection = getConnection();
+            connection.setAutoCommit(false);
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             setParameter(statement, parameters);
             statement.executeUpdate();

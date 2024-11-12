@@ -3,8 +3,28 @@ package com.jdbc.model;
 public class UserModel {
     private int id;
     private String email;
+
+    public UserModel(String email, String firstName, String lastName) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public UserModel() {}
+
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
+
     private String firstName;
     private String lastName;
+
 
     public String getLastName() {
         return lastName;
